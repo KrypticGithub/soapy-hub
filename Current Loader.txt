@@ -1,0 +1,38 @@
+local lp = game:GetService("Players").LocalPlayer
+local PLACE = tostring(game.PlaceId)
+
+local SOURCES = {
+    ["286090429"]   = "https://pastebin.com/raw/3N8d2zqF",
+    ["17574618959"] = "https://pastebin.com/raw/3N8d2zqF",
+    ["12355337193"] = "https://pastebin.com/raw/Tb43LuBh",
+    ["1345139196"]  = "https://pastebin.com/raw/d2YmuQxR",
+}
+
+local function run(url)
+    local ok,res = pcall(function()
+        return game:HttpGet(url, true)
+    end)
+    if not ok then
+        lp:Kick("Load failed (net).")
+        return
+    end
+
+    local ok2,fn = pcall(loadstring, res)
+    if not ok2 or type(fn) ~= "function" then
+        lp:Kick("Load failed (compile).")
+        return
+    end
+
+    local ok3,err = pcall(fn)
+    if not ok3 then
+        lp:Kick("Load failed (runtime).")
+        return
+    end
+end
+
+local url = SOURCES[PLACE]
+if url then
+    run(url)
+else
+    lp:Kick("Unsupported game.")
+end
