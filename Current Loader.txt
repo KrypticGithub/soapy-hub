@@ -6,6 +6,7 @@ local SOURCES = {
     ["17574618959"] = "https://pastebin.com/raw/3N8d2zqF",
     ["12355337193"] = "https://pastebin.com/raw/Tb43LuBh",
     ["1345139196"]  = "https://pastebin.com/raw/d2YmuQxR",
+    ["301549746"]   = "https://pastebin.com/raw/shHn18gG",
 }
 
 local function run(url)
